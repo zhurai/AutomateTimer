@@ -6,7 +6,7 @@ import os
 import sys
 import discord
 import pyautogui
-from discord.ext import commands, cogs
+from discord.ext import commands
 
 localconfig = config.config['BOT']
 cwd = os.path.dirname(os.path.abspath(__file__))+"\\scripts\\"
@@ -25,7 +25,7 @@ async def on_ready():
     proc = subprocess.Popen(['C:\Program Files (x86)\AutoIt3\AutoIt3.exe',cwd+'startbot.au3'],stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=subprocess.PIPE)
 
 # MANAGEMENT COMMANDS
-bot.add_cog(cogs.management(bot))
+bot.load_extension("cogs.management")
 
 '''
 @bot.command()
