@@ -24,7 +24,7 @@ class ManagementCog (commands.Cog):
     @commands.command(aliases=['gitpull'])
     async def git(self, ctx, args):
         print("git:")
-        print("git pull command called with argument: ", arg )
+        print("git pull command called with argument: ", args )
         # git pull
 
         if len(args) == 0:
