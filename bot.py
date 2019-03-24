@@ -6,7 +6,7 @@ import os
 import sys
 import discord
 import pyautogui
-from discord.ext import commands
+from discord.ext import commands, cogs
 
 localconfig = config.config['BOT']
 cwd = os.path.dirname(os.path.abspath(__file__))+"\\scripts\\"
