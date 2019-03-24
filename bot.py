@@ -3,6 +3,7 @@ import utils
 import requests
 import subprocess
 import os
+import sys
 import discord
 import pyautogui
 from discord.ext import commands
@@ -29,7 +30,7 @@ async def on_ready():
 async def restart(ctx):
     # restarts script, not watchme
     await bot.logout()
-    proc = subprocess.call([cwd+'restart.bat'])
+    proc = subprocess.call([sys.executable, "bot.py"])
     
 @bot.command()
 async def shutdown(ctx):
