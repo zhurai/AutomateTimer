@@ -28,8 +28,8 @@ async def on_ready():
 @bot.command()
 async def restart(ctx):
     # restarts script, not watchme
-    proc = subprocess.Popen([cwd+'restart.bat'], shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=subprocess.PIPE)
     await bot.close()
+    proc = subprocess.call([cwd+'restart.bat'])
     
 @bot.command()
 async def shutdown(ctx):
