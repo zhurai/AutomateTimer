@@ -9,7 +9,7 @@ import pyautogui
 from discord.ext import commands
 
 localconfig = config.config['BOT']
-cwd = os.path.dirname(os.path.abspath(__file__))+"\\scripts\\"
+scriptdir = = os.path.dirname(os.path.abspath(__file__))+"\\scripts\\"
 token = config.config['BOT']['discordtoken']
 prefix= config.config['BOT']['prefix']
 
@@ -22,7 +22,7 @@ async def on_ready():
     print("Username: " + bot.user.name)
     print("ID: " + str(bot.user.id))
     print("-----")
-    proc = subprocess.Popen(['C:\Program Files (x86)\AutoIt3\AutoIt3.exe',cwd+'startbot.au3'],stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=subprocess.PIPE)
+    proc = subprocess.Popen(['C:\Program Files (x86)\AutoIt3\AutoIt3.exe',scriptdir+'startbot.au3'],stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=subprocess.PIPE)
 
 # MANAGEMENT COMMANDS
 bot.load_extension("cogs.management")
@@ -31,7 +31,7 @@ bot.load_extension("cogs.management")
 @bot.command()
 async def restart(ctx):
     # restarts script, not watchme
-    os.startfile(cwd+'restart.bat')
+    os.startfile(scriptdir+'restart.bat')
     await bot.close()
 
 @bot.command()
@@ -48,7 +48,7 @@ async def close(ctx):
 async def gitpull(ctx):
     print("git pull command called")
     # git pulls for this script/rehash
-    proc = subprocess.Popen([cwd+'gitpull.bat'], shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=subprocess.PIPE)
+    proc = subprocess.Popen([scriptdir+'gitpull.bat'], shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=subprocess.PIPE)
     # send something when completed?
     # the following is currently test ones
     stdout_value = proc.stdout.read() + proc.stderr.read()
@@ -60,7 +60,7 @@ async def gitpull(ctx):
 @bot.command()
 async def runwatchme(ctx):
     # starts watchme
-    proc = subprocess.Popen([cwd+'runwatchme.bat'], shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=subprocess.PIPE)
+    proc = subprocess.Popen([scriptdir+'runwatchme.bat'], shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=subprocess.PIPE)
     # send something when completed?
     return
 
@@ -79,8 +79,8 @@ async def screenshot(ctx):
 
 @bot.command()
 async def test_bat(ctx):
-    print(cwd+'\test.bat')
-    proc = subprocess.Popen([cwd+'test.bat'],stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=subprocess.PIPE)
+    print(scriptdir+'\test.bat')
+    proc = subprocess.Popen([scriptdir+'test.bat'],stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=subprocess.PIPE)
     stdout_value = proc.stdout.read() + proc.stderr.read()
     await ctx.send(stdout_value)
 

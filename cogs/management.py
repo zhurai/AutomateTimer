@@ -1,8 +1,9 @@
-import config
 import os
 import subprocess
 import discord
 from discord.ext import commands
+
+scriptdir = os.path.dirname(os.path.abspath('../bot.py'))+"\\scripts\\"
 
 class ManagementCog (commands.Cog):
     def __init__(self, bot):
@@ -11,7 +12,7 @@ class ManagementCog (commands.Cog):
     @commands.command()
     async def restart(self, ctx):
         # restarts script, not watchme
-        os.startfile(cwd+'restart.bat')
+        os.startfile(scriptdir+'restart.bat')
         await self.bot.close()
 
     @commands.command()
@@ -28,7 +29,7 @@ class ManagementCog (commands.Cog):
     async def gitpull(self, ctx):
         print("git pull command called")
         # git pulls for this script/rehash
-        proc = subprocess.Popen([cwd+'gitpull.bat'], shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=subprocess.PIPE)
+        proc = subprocess.Popen([scriptdir+'gitpull.bat'], shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=subprocess.PIPE)
         # send something when completed?
         # the following is currently test ones
         stdout_value = proc.stdout.read() + proc.stderr.read()
