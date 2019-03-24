@@ -24,7 +24,7 @@ class ManagementCog (commands.Cog):
     @commands.command(aliases=['gitpull'])
     async def git(self, ctx, *args):
         print("git:")
-        print("git pull command called with argument: '", args,"'" )
+        print("git pull command called with arguments: '", args,"'" )
         # git pull
 
         if len(args) == 0:
@@ -32,7 +32,6 @@ class ManagementCog (commands.Cog):
             print("  git: no argument given")
             await ctx.send("git: pulling from default")
             proc = subprocess.Popen([scriptdir+'gitpull.bat'], shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=subprocess.PIPE)
-            stdout_value = proc.stdout.read() + proc.stderr.read()
             stdout_value = proc.stdout.read() + proc.stderr.read()
             await ctx.send(stdout_value.rstrip().decode())
 
