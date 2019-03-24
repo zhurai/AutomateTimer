@@ -59,12 +59,5 @@ async def cmd(ctx,*args):
     await ctx.send(stdout_value)
 '''
 
-'''
-@bot.command()
-async def gitpull(ctx):
-    proc = subprocess.Popen(args, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=subprocess.PIPE)
-'''
-
-
 # start bot
 bot.run(token)
