@@ -15,7 +15,7 @@ prefix= config.config['BOT']['prefix']
 
 # create Discord Client
 bot = commands.Bot(command_prefix=prefix)
-    
+
 @bot.event
 async def on_ready():
     print("Logged in")
@@ -25,19 +25,20 @@ async def on_ready():
     proc = subprocess.Popen(['C:\Program Files (x86)\AutoIt3\AutoIt3.exe',cwd+'startbot.au3'],stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=subprocess.PIPE)
 
 # MANAGEMENT COMMANDS
-import management
+bot.load_extension("cogs.management")
+
 '''
 @bot.command()
 async def restart(ctx):
     # restarts script, not watchme
 	os.startfile(cwd+'restart.bat')
 	await bot.close()
-    
+
 @bot.command()
 async def shutdown(ctx):
     # closes script, not watchme
     await bot.close()
-    
+
 @bot.command()
 async def close(ctx):
     # closes script, not watchme
@@ -71,7 +72,7 @@ async def screenshot(ctx):
 
 # WATCH ME COMMANDS
 
-    
+
 
 '''
 # Test commands to set the stage for later
