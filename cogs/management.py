@@ -29,7 +29,7 @@ class ManagementCog (commands.Cog):
         # send something when completed?
         # the following is currently test ones
         stdout_value = proc.stdout.read() + proc.stderr.read()
-        await ctx.send(stdout_value)
+        await ctx.send(stdout_value.rstrip())
 
     @commands.command(aliases=['startwatchme'])
     async def runwatchme(self,ctx):

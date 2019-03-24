@@ -1,4 +1,5 @@
 @echo off
 cd %~dp0
 cd ..
-git pull
+git pull -q
+git log --pretty="%h - %s"-l -1
