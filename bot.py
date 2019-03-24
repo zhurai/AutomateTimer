@@ -31,8 +31,8 @@ bot.load_extension("cogs.management")
 @bot.command()
 async def restart(ctx):
     # restarts script, not watchme
-	os.startfile(cwd+'restart.bat')
-	await bot.close()
+    os.startfile(cwd+'restart.bat')
+    await bot.close()
 
 @bot.command()
 async def shutdown(ctx):
