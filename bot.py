@@ -43,11 +43,11 @@ async def close(ctx):
 
 @bot.command()
 async def gitpull(ctx):
-	print("git pull command called")
+    print("git pull command called")
     # git pulls for this script/rehash
     proc = subprocess.Popen([cwd+'gitpull.bat'], shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=subprocess.PIPE)
     # send something when completed?
-	# the following is currently test ones
+    # the following is currently test ones
     stdout_value = proc.stdout.read() + proc.stderr.read()
     await ctx.send(stdout_value)
 
