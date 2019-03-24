@@ -9,7 +9,7 @@ import pyautogui
 from discord.ext import commands
 
 localconfig = config.config['BOT']
-scriptdir = = os.path.dirname(os.path.abspath(__file__))+"\\scripts\\"
+scriptdir == os.path.dirname(os.path.abspath(__file__))+"\\scripts\\"
 token = config.config['BOT']['discordtoken']
 prefix= config.config['BOT']['prefix']
 
