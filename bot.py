@@ -28,7 +28,7 @@ async def on_ready():
 @bot.command()
 async def restart(ctx):
     # restarts script, not watchme
-    await bot.close()
+    await bot.logout()
     proc = subprocess.call([cwd+'restart.bat'])
     
 @bot.command()
@@ -43,10 +43,13 @@ async def close(ctx):
 
 @bot.command()
 async def gitpull(ctx):
+	print("git pull command called")
     # git pulls for this script/rehash
     proc = subprocess.Popen([cwd+'gitpull.bat'], shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=subprocess.PIPE)
     # send something when completed?
-    return
+	# the following is currently test ones
+    stdout_value = proc.stdout.read() + proc.stderr.read()
+    await ctx.send(stdout_value)
 
 # INTRO COMMANDS
 
