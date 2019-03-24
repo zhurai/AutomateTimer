@@ -1,3 +1,5 @@
 @echo off
+cd %~dp0
+cd ..
 timeout /T 5 /NOBREAK
-pythonw "C:\Users\WatchMe\Google Drive\Programs-WatchMe-Bot\bot.py"
+pythonw bot.py
