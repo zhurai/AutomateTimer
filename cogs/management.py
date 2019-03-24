@@ -4,7 +4,7 @@ import subprocess
 import discord
 from discord.ext import commands
 
-class ManagementCog:
+class ManagementCog (commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
