@@ -3,7 +3,7 @@ import subprocess
 import discord
 from discord.ext import commands
 
-scriptdir = os.path.dirname(os.path.abspath('../bot.py'))+"\\scripts\\"
+scriptdir = os.path.dirname(os.path.abspath('bot.py'))+"\\scripts\\"
 
 class ManagementCog (commands.Cog):
     def __init__(self, bot):
