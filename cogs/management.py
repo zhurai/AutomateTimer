@@ -10,13 +10,13 @@ class ManagementCog (commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    @commands.command(aliases=[reboot,reset])
+    @commands.command(aliases=['reboot','reset'])
     async def restart(self, ctx):
         # restarts script, not watchme
         os.startfile(scriptdir+'restart.bat')
         await self.bot.close()
 
-    @commands.command(aliases=[close])
+    @commands.command(aliases=['close'])
     async def shutdown(self, ctx):
         # closes script, not watchme
         await self.bot.close()
@@ -31,7 +31,7 @@ class ManagementCog (commands.Cog):
         stdout_value = proc.stdout.read() + proc.stderr.read()
         await ctx.send(stdout_value)
 
-    @commands.command(aliases=[startwatchme])
+    @commands.command(aliases=['startwatchme'])
     async def runwatchme(self,ctx):
         # starts watchme
         proc = subprocess.Popen([scriptdir+'runwatchme.bat'], shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=subprocess.PIPE)
