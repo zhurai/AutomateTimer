@@ -29,9 +29,11 @@ async def on_ready():
 @bot.command()
 async def restart(ctx):
     # restarts script, not watchme
-	os.execv(sys.executable, ['python'] + sys.argv)
+	#os.execv(sys.executable, ['python'] + sys.argv)
     #await bot.logout()
     #proc = subprocess.call([sys.executable, "bot.py"])
+	os.startfile(cwd+'restart.bat')
+	await bot.close()
     
 @bot.command()
 async def shutdown(ctx):
@@ -69,10 +71,11 @@ async def screenshot(ctx):
         await ctx.send(file=discord.File(fp,'screenshot.png'))
 
 # WATCH ME COMMANDS
+'''
 async def test(ctx):
 	print("this is an all new command")
 	await ctx.send("TEST!")
-
+'''
 
     
 
