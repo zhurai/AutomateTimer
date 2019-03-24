@@ -69,7 +69,9 @@ async def screenshot(ctx):
         await ctx.send(file=discord.File(fp,'screenshot.png'))
 
 # WATCH ME COMMANDS
-
+async def test(ctx):
+	print("this is an all new command")
+	await ctx.send("TEST!")
 
 
     
