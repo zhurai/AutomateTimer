@@ -25,13 +25,11 @@ async def on_ready():
     proc = subprocess.Popen(['C:\Program Files (x86)\AutoIt3\AutoIt3.exe',cwd+'startbot.au3'],stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=subprocess.PIPE)
 
 # MANAGEMENT COMMANDS
-
+import management
+'''
 @bot.command()
 async def restart(ctx):
     # restarts script, not watchme
-	#os.execv(sys.executable, ['python'] + sys.argv)
-    #await bot.logout()
-    #proc = subprocess.call([sys.executable, "bot.py"])
 	os.startfile(cwd+'restart.bat')
 	await bot.close()
     
@@ -54,6 +52,7 @@ async def gitpull(ctx):
     # the following is currently test ones
     stdout_value = proc.stdout.read() + proc.stderr.read()
     await ctx.send(stdout_value)
+'''
 
 # INTRO COMMANDS
 
