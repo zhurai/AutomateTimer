@@ -29,8 +29,9 @@ async def on_ready():
 @bot.command()
 async def restart(ctx):
     # restarts script, not watchme
-    await bot.logout()
-    proc = subprocess.call([sys.executable, "bot.py"])
+	os.execv(sys.executable, ['python'])
+    #await bot.logout()
+    #proc = subprocess.call([sys.executable, "bot.py"])
     
 @bot.command()
 async def shutdown(ctx):
