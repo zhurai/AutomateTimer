@@ -5,3 +5,6 @@ WinSetState($hwnd, "", @SW_MINIMIZE)
 
 $hWnd2 = WinGetHandle("C:\Windows\system32\cmd.exe")
 WinSetState($hwnd2, "", @SW_MINIMIZE)
+
+$hWnd2 = WinGetHandle("Command Prompt")
+WinSetState($hwnd2, "", @SW_MINIMIZE)
