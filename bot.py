@@ -6,7 +6,6 @@ import discord
 import pyautogui
 from discord.ext import commands
 
-#debug=config.config['DEBUG'].getint('debug')
 localconfig = config.config['BOT']
 cwd = os.path.dirname(__file__)+"\\scripts\\"
 token = config.config['BOT']['discordtoken']
@@ -111,19 +110,3 @@ async def gitpull(ctx):
 
 # start bot
 bot.run(token)
-
-
-
-
-'''
-
-@bot.command()
-async def hello(ctx):  # registered command: `$hello`
-
-    message_author = ctx.author
-    message_channel = ctx.channel
-
-    print("{} said hello".format(message_author))
-    await message_channel.send("Hello, {}!".format(message_author.name))
-
-'''
