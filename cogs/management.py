@@ -21,15 +21,39 @@ class ManagementCog (commands.Cog):
         # closes script, not watchme
         await self.bot.close()
 
-    @commands.command()
-    async def gitpull(self, ctx):
-        print("git pull command called")
-        # git pulls for this script/rehash
-        proc = subprocess.Popen([scriptdir+'gitpull.bat'], shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=subprocess.PIPE)
-        # send something when completed?
-        # the following is currently test ones
-        stdout_value = proc.stdout.read() + proc.stderr.read()
-        await ctx.send(stdout_value.rstrip().decode())
+    @commands.command(aliases=['gitpull'])
+    async def git(self, ctx, args):
+        print("git:")
+        print("git pull command called with argument: ", arg )
+        # git pull
+
+        if len(args) == 0:
+            # no argument given
+            print("  git: no argument given")
+            await ctx.send("git: pulling from default")
+            proc = subprocess.Popen([scriptdir+'gitpull.bat'], shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=subprocess.PIPE)
+            stdout_value = proc.stdout.read() + proc.stderr.read()
+            stdout_value = proc.stdout.read() + proc.stderr.read()
+            await ctx.send(stdout_value.rstrip().decode())
+
+        elif len(args) == 1:
+            # one argument given
+            print("  git: argument given: " + args[0])
+            if (args[0].lower() == 'watchme'):
+                print("   git: watchme selected")
+                await ctx.send("git: pulling from watchmescripts")
+                proc = subprocess.Popen([scriptdir+'gitpullwatchme.bat'], shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=subprocess.PIPE)
+                stdout_value = proc.stdout.read() + proc.stderr.read()
+                await ctx.send(stdout_value.rstrip().decode())
+            else:
+                # default
+                print("   git: automatetimer selected")
+                await ctx.send("git: pulling from automatetimer")
+                proc = subprocess.Popen([scriptdir+'gitpull.bat'], shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=subprocess.PIPE)
+                stdout_value = proc.stdout.read() + proc.stderr.read()
+                await ctx.send(stdout_value.rstrip().decode())
+
+        print(" git: finished")
 
     @commands.command(aliases=['startwatchme'])
     async def runwatchme(self,ctx):
