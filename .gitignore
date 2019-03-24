@@ -1,5 +1,8 @@
 # ignore cache files
 __pycache__/
 
+# ignore screenshot folder
+screenshots/
+
 # ignore configuration files
 config.ini
