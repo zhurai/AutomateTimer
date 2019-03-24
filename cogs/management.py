@@ -22,9 +22,9 @@ class ManagementCog (commands.Cog):
         await self.bot.close()
 
     @commands.command(aliases=['gitpull'])
-    async def git(self, ctx, args):
+    async def git(self, ctx, *args):
         print("git:")
-        print("git pull command called with argument: ", args )
+        print("git pull command called with argument: '", args,"'" )
         # git pull
 
         if len(args) == 0:
@@ -38,7 +38,7 @@ class ManagementCog (commands.Cog):
 
         elif len(args) == 1:
             # one argument given
-            print("  git: argument given: " + args[0])
+            print("  git: argument given: '" + args[0],"'")
             if (args[0].lower() == 'watchme'):
                 print("   git: watchme selected")
                 await ctx.send("git: pulling from watchmescripts")
@@ -52,7 +52,6 @@ class ManagementCog (commands.Cog):
                 proc = subprocess.Popen([scriptdir+'gitpull.bat'], shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=subprocess.PIPE)
                 stdout_value = proc.stdout.read() + proc.stderr.read()
                 await ctx.send(stdout_value.rstrip().decode())
-
         print(" git: finished")
 
     @commands.command(aliases=['startwatchme'])
