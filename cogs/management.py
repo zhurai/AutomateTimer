@@ -45,7 +45,7 @@ class ManagementCog (commands.Cog):
                 proc = subprocess.Popen([scriptdir+'gitpullwatchme.bat'], shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=subprocess.PIPE)
                 stdout_value = proc.stdout.read() + proc.stderr.read()
                 await ctx.send(stdout_value.rstrip().decode())
-            elif (args[0].lower() == 'automatetimer' or args[0].lower() == 'self' or args[0].lower() == 'srv' or arg[0].lower() == 'bot')::
+            elif (args[0].lower() == 'automatetimer' or args[0].lower() == 'self' or args[0].lower() == 'srv' or arg[0].lower() == 'bot'):
                 # automate timer
                 print("   git: automatetimer selected")
                 await ctx.send("git: pulling from automatetimer")
