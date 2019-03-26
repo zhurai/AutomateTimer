@@ -25,6 +25,7 @@ async def on_ready():
     proc = subprocess.Popen(['C:\Program Files (x86)\AutoIt3\AutoIt3.exe',scriptdir+'startup_bot.au3'],stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=subprocess.PIPE)
 
 bot.load_extension("cogs.management")
+bot.load_extension("cogs.watchme")
 
 '''
 # Test commands to set the stage for later
@@ -48,16 +49,17 @@ async def test_python(ctx):
     proc = subprocess.Popen(['python.exe','test.py'],stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=subprocess.PIPE)
     stdout_value = proc.stdout.read() + proc.stderr.read()
     await ctx.send(stdout_value)
-'''
 
 # this is actually unsafe to have
 
 @bot.command()
 async def cmd(ctx,*args):
+    print("cmd - ", args)
     proc = subprocess.Popen(args, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE,
                             stdin=subprocess.PIPE)
     stdout_value = proc.stdout.read() + proc.stderr.read()
     await ctx.send(stdout_value.rstrip().decode())
+'''
 
 
 # start bot
