@@ -10,8 +10,8 @@ class WatchMeCog (commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    @commands.command(aliases=[''])
-    async def git(self, ctx, *args):
+    @commands.command()
+    async def autoit(self, ctx, *args):
         '''
         print("git:")
         print("git pull command called with arguments: '", args,"'" )
