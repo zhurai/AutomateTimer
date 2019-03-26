@@ -51,7 +51,7 @@ class WatchMeCog (commands.Cog):
         print(scriptdir+'test_consoleautoit.au3')
         proc = subprocess.Popen(['C:\Program Files (x86)\AutoIt3\AutoIt3.exe',scriptdir+'test_consoleautoit.au3'],stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=subprocess.PIPE)
         stdout_value = proc.stdout.read() + proc.stderr.read()
-        await ctx.send(stdout_value.rstrip().encode())
+        await ctx.send(stdout_value.rstrip())
 
 def setup(bot):
     bot.add_cog(WatchMeCog(bot))

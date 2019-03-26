@@ -4,4 +4,4 @@
 
 ControlClick("WatchMe","","[NAME:tabControl]")
 Local $Tab=ControlCommand("WatchMe","","[NAME:tabControl]","CurrentTab","")
-ConsoleWrite($Tab)
+ConsoleWrite($Tab & @CRLF)
