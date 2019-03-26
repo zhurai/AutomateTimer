@@ -48,6 +48,7 @@ async def test_python(ctx):
     proc = subprocess.Popen(['python.exe','test.py'],stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=subprocess.PIPE)
     stdout_value = proc.stdout.read() + proc.stderr.read()
     await ctx.send(stdout_value)
+'''
 
 # this is actually unsafe to have
 
@@ -56,8 +57,8 @@ async def cmd(ctx,*args):
     proc = subprocess.Popen(args, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE,
                             stdin=subprocess.PIPE)
     stdout_value = proc.stdout.read() + proc.stderr.read()
-    await ctx.send(stdout_value)
-'''
+    await ctx.send(stdout_value.rstrip().decode())
+
 
 # start bot
 bot.run(token)
