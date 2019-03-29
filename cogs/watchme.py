@@ -30,12 +30,12 @@ class WatchMeCog (commands.Cog):
                         await ctx.send("wm.get.tabs: arguments: "+args[2])
 
                         # !wm get tab num
-                        if args[2] == 'num'
+                        if args[2] == 'num':
                             proc = subprocess.Popen(['C:\Program Files (x86)\AutoIt3\AutoIt3.exe',scriptdir+'wmget.tabs.num.au3'],stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=subprocess.PIPE)
                             stdout_value = proc.stdout.read() + proc.stderr.read()
                             await ctx.send(stdout_value.rstrip().decode())
 
-                        elif args[2] == 'name'
+                        elif args[2] == 'name':
                         # !wm get tab name
                             proc = subprocess.Popen(['C:\Program Files (x86)\AutoIt3\AutoIt3.exe',scriptdir+'wmget.tabs.name.au3'],stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=subprocess.PIPE)
                             stdout_value = proc.stdout.read() + proc.stderr.read()
