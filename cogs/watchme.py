@@ -108,7 +108,7 @@ class WatchMeCog (commands.Cog):
                             stdout_value = proc.stdout.read() + proc.stderr.read()
                             control1=stdout_value.decode().split("\r\n")
                             control2="\n".join(control1).rstrip()
-                            await ctx.send("```"+control2+"```")
+                            await ctx.send("```"+"Name of Task | Reset | Start/Stop\n"+control2+"```")
 
 
                         # !wm get control "text"
