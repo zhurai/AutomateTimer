@@ -47,7 +47,7 @@ class WatchMeCog (commands.Cog):
                             proc = subprocess.Popen(['C:\Program Files (x86)\AutoIt3\AutoIt3.exe',scriptdir+'wmget.tabs.list.au3'],stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=subprocess.PIPE)
                             stdout_value = proc.stdout.read() + proc.stderr.read()
                             tabs=stdout_value.decode().split("\r\n")
-                            tabs2=", ".join(tabs)
+                            tabs2=", ".join(tabs).rstrip(', ')
                             await ctx.send(tabs2)
 
 
@@ -71,16 +71,18 @@ class WatchMeCog (commands.Cog):
                             # list of tabs
                             proc = subprocess.Popen(['C:\Program Files (x86)\AutoIt3\AutoIt3.exe',scriptdir+'wmget.timer.curr.au3'],stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=subprocess.PIPE)
                             stdout_value = proc.stdout.read() + proc.stderr.read()
-                            tabs=stdout_value.decode().replace("\r\n",", ")
-                            await ctx.send(tabs)
+                            timers=stdout_value.decode().split("\r\n")
+                            timers2=", ".join(timers).rstrip(', ')
+                            await ctx.send(timers2)
 
                         # !wm get timers all
                         elif args[2].lower() == 'all':
                             # list of tabs
                             proc = subprocess.Popen(['C:\Program Files (x86)\AutoIt3\AutoIt3.exe',scriptdir+'wmget.timer.all.au3'],stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=subprocess.PIPE)
                             stdout_value = proc.stdout.read() + proc.stderr.read()
-                            tabs=stdout_value.decode().replace("\r\n",", ")
-                            await ctx.send(tabs)
+                            timers=stdout_value.decode().split("\r\n")
+                            timers2=", ".join(timers).rstrip(', ')
+                            await ctx.send(timers2)
 
                         # !wm get timers ???
                         else:
