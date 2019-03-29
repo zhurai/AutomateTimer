@@ -23,6 +23,7 @@ class WatchMeCog (commands.Cog):
         if len(args) > 0 and args[0].lower()=='get':
             if len(args) > 1:
 
+
                 # !wm get tab ()
                 if args[1].lower()=='tab':
                     if len(args) > 2:
@@ -34,21 +35,34 @@ class WatchMeCog (commands.Cog):
                             stdout_value = proc.stdout.read() + proc.stderr.read()
                             await ctx.send(stdout_value.rstrip().decode())
 
-                        elif args[2] == 'name':
                         # !wm get tab name
+                        elif args[2] == 'name':
                             proc = subprocess.Popen(['C:\Program Files (x86)\AutoIt3\AutoIt3.exe',scriptdir+'wmget.tabs.name.au3'],stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=subprocess.PIPE)
                             stdout_value = proc.stdout.read() + proc.stderr.read()
                             await ctx.send(stdout_value.rstrip().decode())
+
+                        # !wm get tab list
+                        elif args[2] == 'list':
+                            # list of tabs
+                            proc = subprocess.Popen(['C:\Program Files (x86)\AutoIt3\AutoIt3.exe',scriptdir+'wmget.tabs.list.au3'],stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=subprocess.PIPE)
+                            stdout_value = proc.stdout.read() + proc.stderr.read()
+                            await ctx.send(stdout_value)
 
                         # !wm get tab ???
                         else:
                             print("  wm.get.tabs: invalid argument")
                             await ctx.send("[ERROR] wm.get.tabs: invalid argument given")
-
                     # !wm get tab
                     else:
                         print("  wm.get.tabs: not enough arguments")
                         await ctx.send("[ERROR] wm.get.tabs: not enough arguments")
+
+
+                #elif args[1].lower()=='':
+                #    None
+
+                #elif args[1].lower()=='':
+                #    None
 
 
             # !wm get
@@ -60,14 +74,21 @@ class WatchMeCog (commands.Cog):
 
 
 
+        elif len(args) > 0 and args[0].lower() == 'set':
+            None
 
 
 
 
+        elif len(args) > 0 and args[0].lower() == 'add':
+            if len(args) > 1:
+                # !wm add tab ()
+                if args[1].lower() == 'tab':
+                    None
+                elif args[1].lower() == ''
+                    None
 
 
-
-        
         # !wm ()
         else:
             # invalid arguments
