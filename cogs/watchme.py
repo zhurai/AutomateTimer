@@ -46,9 +46,10 @@ class WatchMeCog (commands.Cog):
                             # list of tabs
                             proc = subprocess.Popen(['C:\Program Files (x86)\AutoIt3\AutoIt3.exe',scriptdir+'wmget.tabs.list.au3'],stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=subprocess.PIPE)
                             stdout_value = proc.stdout.read() + proc.stderr.read()
-                            tabs=stdout_value.decode().replace("\r\n",", ")
-                            await ctx.send(tabs)
-
+                            tabs=stdout_value.decode().split("\r\n")
+                            tabs2=tabs.join(", ")
+                            await ctx.send(tabs2)
+                            
 
                         # !wm get tab ???
                         else:
