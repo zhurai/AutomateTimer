@@ -84,11 +84,11 @@ class WatchMeCog (commands.Cog):
                             timers2=", ".join(timers).rstrip(', ')
                             await ctx.send(timers2)
 
+
                         # !wm get timers ???
                         else:
                             print("  wm.get.timers: invalid argument")
                             await ctx.send("[ERROR] wm.get.timers: invalid argument given")
-
                     else:
                         # only display CURRENT tab timers by default
                         print("  wm.get.timers: default (current tab only)")
@@ -97,8 +97,23 @@ class WatchMeCog (commands.Cog):
                         tabs=stdout_value.decode().replace("\r\n",", ")
                         await ctx.send(tabs)
 
-                #elif args[1].lower() == '':
-                #    None
+                elif args[1].lower() == 'control' or args[1].lower() == 'controls':
+                    if len(args) > 2:
+                        print("  wm.get.control: arguments: " + args[2])
+
+                        # !wm get control list
+                        # output all CURRENT tab timers
+                        if args[2].lower() == 'list' or args[2].lower() == 'current':
+                            proc = subprocess.Popen(['C:\Program Files (x86)\AutoIt3\AutoIt3.exe',scriptdir+'wmget.control.list.au3'],stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=subprocess.PIPE)
+                            stdout_value = proc.stdout.read() + proc.stderr.read()
+                            control1=stdout_value.decode().split("\r\n")
+                            control2=", ".join(control1).rstrip(', ')
+                            await ctx.send(control2)
+
+
+                        # !wm get control "text"
+                        # output "text" "start/stop control" "reset control"
+
 
                 # !wm get ???
                 else:
