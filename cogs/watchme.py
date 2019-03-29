@@ -33,9 +33,7 @@ class WatchMeCog (commands.Cog):
                         if args[2].lower() == 'num' or args[2].lower() == 'id':
                             proc = subprocess.Popen(['C:\Program Files (x86)\AutoIt3\AutoIt3.exe',scriptdir+'wmget.tabs.num.au3'],stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=subprocess.PIPE)
                             stdout_value = proc.stdout.read() + proc.stderr.read()
-                            tabs1=stdout_value.decode().split("\r\n")
-                            tabs2="\n".join(tabs1).rstrip()
-                            await ctx.send("```"+tabs2+"```")
+                            await ctx.send(stdout_value.rstrip().decode())
 
                         # !wm get tab name
                         elif args[2].lower() == 'name':
@@ -48,9 +46,9 @@ class WatchMeCog (commands.Cog):
                             # list of tabs
                             proc = subprocess.Popen(['C:\Program Files (x86)\AutoIt3\AutoIt3.exe',scriptdir+'wmget.tabs.list.au3'],stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=subprocess.PIPE)
                             stdout_value = proc.stdout.read() + proc.stderr.read()
-                            tabs=stdout_value.decode().split("\r\n")
-                            tabs2=", ".join(tabs).rstrip(', ')
-                            await ctx.send(tabs2)
+                            tabs1=stdout_value.decode().split("\r\n")
+                            tabs2="\n".join(tabs1).rstrip()
+                            await ctx.send("```"+tabs2+"```")
 
 
                         # !wm get tab ???
