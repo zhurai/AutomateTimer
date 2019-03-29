@@ -60,8 +60,8 @@ class WatchMeCog (commands.Cog):
                         await ctx.send("[ERROR] wm.get.tabs: not enough arguments")
 
 
-                # !wm get
-            elif args[1].lower() == 'timer' or args[1].lower() == 'timers':
+                # !wm get timer ()
+                elif args[1].lower() == 'timer' or args[1].lower() == 'timers':
                     if len(args) > 2:
                         print("  wm.get.timers: arguments: " + args[2])
 
