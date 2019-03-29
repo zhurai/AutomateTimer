@@ -74,8 +74,8 @@ class WatchMeCog (commands.Cog):
 
 
 
-        elif len(args) > 0 and args[0].lower() == 'set':
-            None
+        #elif len(args) > 0 and args[0].lower() == 'set':
+        #    None
 
 
 
@@ -85,8 +85,8 @@ class WatchMeCog (commands.Cog):
                 # !wm add tab ()
                 if args[1].lower() == 'tab':
                     None
-                elif args[1].lower() == ''
-                    None
+                #elif args[1].lower() == '':
+                #    None
 
 
         # !wm ()
