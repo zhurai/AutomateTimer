@@ -52,6 +52,15 @@ class ManagementCog (commands.Cog):
                 proc = subprocess.Popen([scriptdir+'gitpull.bat'], shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=subprocess.PIPE)
                 stdout_value = proc.stdout.read() + proc.stderr.read()
                 await ctx.send(stdout_value.rstrip().decode())
+            elif (args[0].lower() == 'all' or args[0].lower() == 'both'):
+                print("   git: both selected")
+                await ctx.send("git: pulling from both")
+                proc = subprocess.Popen([scriptdir+'gitpullwatchme.bat'], shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=subprocess.PIPE)
+                stdout_value = proc.stdout.read() + proc.stderr.read()
+                await ctx.send(stdout_value.rstrip().decode())
+                proc = subprocess.Popen([scriptdir+'gitpull.bat'], shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=subprocess.PIPE)
+                stdout_value = proc.stdout.read() + proc.stderr.read()
+                await ctx.send(stdout_value.rstrip().decode())
             else:
                 print("   git: none selected")
                 await ctx.send("git: invalid input!")
