@@ -30,10 +30,12 @@ class WatchMeCog (commands.Cog):
                         print("  wm.get.tabs: arguments: " + args[2])
 
                         # !wm get tab num
-                        if args[2].lower() == 'num':
+                        if args[2].lower() == 'num' or args[2].lower() == 'id':
                             proc = subprocess.Popen(['C:\Program Files (x86)\AutoIt3\AutoIt3.exe',scriptdir+'wmget.tabs.num.au3'],stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=subprocess.PIPE)
                             stdout_value = proc.stdout.read() + proc.stderr.read()
-                            await ctx.send(stdout_value.rstrip().decode())
+                            tabs1=stdout_value.decode().split("\r\n")
+                            tabs2="\n".join(tabs1).rstrip()
+                            await ctx.send("```"+tabs2+"```")
 
                         # !wm get tab name
                         elif args[2].lower() == 'name':
@@ -108,7 +110,7 @@ class WatchMeCog (commands.Cog):
                             stdout_value = proc.stdout.read() + proc.stderr.read()
                             control1=stdout_value.decode().split("\r\n")
                             control2="\n".join(control1).rstrip()
-                            await ctx.send("```"+"Name of Task | Reset | Start/Stop | Status\n"+control2+"```")
+                            await ctx.send("```"+control2+"```")
 
 
                         # !wm get control "text"

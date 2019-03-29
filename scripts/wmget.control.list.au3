@@ -4,6 +4,7 @@
 $window = WinGetHandle('WatchMe')
 $array=_WinAPI_EnumChildWindows($window,True)
 Local $newarray[0][4]
+Local $header[4]
 $currindex = 0
 Local $maxlen[4]
 $maxlen[0] = 0
@@ -58,6 +59,31 @@ For $i = 1 to UBound($array) -1
 	endif
 Next
 
+$header[0] = "Name of Task"
+$header[1] = "Reset"
+$header[2] = "Start/Stop"
+$header[3] = "Status"
+
+if StringLen($header[0]) > $maxlen[0] Then
+	$maxlen[0] = StringLen($header[0])
+endif
+if StringLen($header[1]) > $maxlen[1] Then
+	$maxlen[1] = StringLen($header[1])
+endif
+if StringLen($header[2]) > $maxlen[2] Then
+	$maxlen[2] = StringLen($header[2])
+endif
+if StringLen($header[3]) > $maxlen[3] Then
+	$maxlen[3] = StringLen($header[3])
+endif
+
+$header1=StringFormat("%-"&$maxlen[0]&"s",$header[0])
+$header2=StringFormat("%-"&$maxlen[1]&"s",$header[1])
+$header3=StringFormat("%-"&$maxlen[2]&"s",$header[2])
+$header4=StringFormat("%-"&$maxlen[3]&"s",$header[3])
+
+ConsoleWrite($header1 & " | " & $header2 & " | " & $header3 & " | " & $header4 & @CRLF)
+
 For $i = 0 to UBound($newarray)-1
 
 	$string1=StringFormat("%-"&$maxlen[0]&"s",$newarray[$i][0])
@@ -67,7 +93,3 @@ For $i = 0 to UBound($newarray)-1
 	ConsoleWrite($string1 & " | " & $string2 & " | " & $string3 & " | " & $string4 & @CRLF)
 
 Next
-
-
-
-; add StringFormat("%10s", $s)
