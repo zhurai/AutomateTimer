@@ -20,14 +20,14 @@ class WatchMeCog (commands.Cog):
             await ctx.send("[ERROR] wm: no argument given")
 
         # !wm get ()
-        if len(args) > 0 and args[0].lower()=='get':
+        if len(args) > 0 and args[0].lower() == 'get':
             if len(args) > 1:
 
 
                 # !wm get tab ()
-                if args[1].lower()=='tab':
+                if args[1].lower() == 'tab':
                     if len(args) > 2:
-                        print("  wm.get.tabs: arguments: "+args[2])
+                        print("  wm.get.tabs: arguments: " + args[2])
 
                         # !wm get tab num
                         if args[2] == 'num':
