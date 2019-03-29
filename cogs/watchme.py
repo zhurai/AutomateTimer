@@ -107,8 +107,8 @@ class WatchMeCog (commands.Cog):
                             proc = subprocess.Popen(['C:\Program Files (x86)\AutoIt3\AutoIt3.exe',scriptdir+'wmget.control.list.au3'],stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=subprocess.PIPE)
                             stdout_value = proc.stdout.read() + proc.stderr.read()
                             control1=stdout_value.decode().split("\r\n")
-                            control2=", ".join(control1).rstrip(', ')
-                            await ctx.send(control2)
+                            control2="\n".join(control1).rstrip()
+                            await ctx.send("```"+control2+"```")
 
 
                         # !wm get control "text"
