@@ -25,8 +25,8 @@ class ManagementCog (commands.Cog):
     async def git(self, ctx, *args):
         print("git:")
         print("git pull command called with arguments: '", args,"'" )
-        # git pull
 
+        # git pull
         if len(args) == 0:
             # no argument given
             print("  git: no argument given")

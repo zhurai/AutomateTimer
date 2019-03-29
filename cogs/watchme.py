@@ -26,8 +26,8 @@ class WatchMeCog (commands.Cog):
                 # !wm get tab
                 if args[1].lower()=='tab':
                     if isset(args[2]):
-                        print("  wm.get.tabs: arguments: "+args[2]+")
-                        await ctx.send("wm.get.tabs: arguments: "+args[2]+")
+                        print("  wm.get.tabs: arguments: "+args[2])
+                        await ctx.send("wm.get.tabs: arguments: "+args[2])
 
                         # !wm get tab num
                         if args[2] == 'num'
