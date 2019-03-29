@@ -17,7 +17,7 @@ class WatchMeCog (commands.Cog):
         if len(args) == 0:
             # no argument given
             print("  wm: no argument given")
-            await ctx.send("wm: no argument given")
+            await ctx.send("[ERROR] wm: no argument given")
 
         # !wm get ()
         if len(args) > 0 and args[0].lower()=='get':
@@ -27,7 +27,6 @@ class WatchMeCog (commands.Cog):
                 if args[1].lower()=='tab':
                     if len(args) > 2:
                         print("  wm.get.tabs: arguments: "+args[2])
-                        await ctx.send("wm.get.tabs: arguments: "+args[2])
 
                         # !wm get tab num
                         if args[2] == 'num':
@@ -44,16 +43,36 @@ class WatchMeCog (commands.Cog):
                         # !wm get tab ???
                         else:
                             print("  wm.get.tabs: invalid argument")
+                            await ctx.send("[ERROR] wm.get.tabs: invalid argument given")
 
                     # !wm get tab
                     else:
                         print("  wm.get.tabs: not enough arguments")
+                        await ctx.send("[ERROR] wm.get.tabs: not enough arguments")
 
 
             # !wm get
             else:
                 # no argument given
                 print("  wm.get no argument given")
+                await ctx.send("[ERROR] wm.get: not enough arguments")
+
+
+
+
+
+
+
+
+
+
+
+        
+        # !wm ()
+        else:
+            # invalid arguments
+            print("  wm: invalid arguments")
+            await ctx.send("[ERROR] wm: invalid arguments")
 
 
 
