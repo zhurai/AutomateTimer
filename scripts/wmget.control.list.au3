@@ -11,7 +11,16 @@ For $i = 1 to UBound($array) -1
 			; [Text] | [Reset] | [Start/Stop]
 			$reset = $array[$i+1][0]
 			$startstop = $array[$i+2][0]
-			ConsoleWrite($text & " | " & $reset & " | " & $startstop & @CRLF)
+			$status = _WinAPI_GetWindowText($array[$i+2][0])
+
+			; Since the status is the reverse of what is going on
+			if $status="Start" Then
+				$status = "Stopped"
+			elseif $status="Stop" Then
+				$status = "Started"
+			endif
+
+			ConsoleWrite($text & " | " & $reset & " | " & $startstop & " | " & $status & @CRLF)
 		endif
 	endif
 Next
