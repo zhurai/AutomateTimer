@@ -19,13 +19,13 @@ class WatchMeCog (commands.Cog):
             print("  wm: no argument given")
             await ctx.send("wm: no argument given")
 
-        # !wm get
+        # !wm get ()
         if len(args) > 0 and args[0].lower()=='get':
-            if isset(args[1]):
+            if len(args) > 1:
 
-                # !wm get tab
+                # !wm get tab ()
                 if args[1].lower()=='tab':
-                    if isset(args[2]):
+                    if len(args) > 2:
                         print("  wm.get.tabs: arguments: "+args[2])
                         await ctx.send("wm.get.tabs: arguments: "+args[2])
 
@@ -45,11 +45,19 @@ class WatchMeCog (commands.Cog):
                         else:
                             print("  wm.get.tabs: invalid argument")
 
-                    # !wm get tab ???
+                    # !wm get tab
                     else:
                         print("  wm.get.tabs: not enough arguments")
 
-                '''
+
+            # !wm get
+            else:
+                # no argument given
+                print("  wm.get no argument given")
+
+
+
+        '''
                 if args[1].lower()=='timers':
                     None
 
@@ -58,16 +66,6 @@ class WatchMeCog (commands.Cog):
 
                 elif args[1].lower()=='control':
                     None
-                '''
-            # !wm get ??
-            else:
-                # no argument given
-                print("  wm.get no argument given")
-
-
-
-        '''
-
 
         elif len(args) == 1:
             # one argument given
@@ -91,11 +89,6 @@ class WatchMeCog (commands.Cog):
                 await ctx.send("git: invalid input!")
         print(" git: finished")
         '''
-
-        print(scriptdir+'test_consoleautoit.au3')
-        proc = subprocess.Popen(['C:\Program Files (x86)\AutoIt3\AutoIt3.exe',scriptdir+'test_consoleautoit.au3'],stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=subprocess.PIPE)
-        stdout_value = proc.stdout.read() + proc.stderr.read()
-        await ctx.send(stdout_value.rstrip().decode())
 
 def setup(bot):
     bot.add_cog(WatchMeCog(bot))
