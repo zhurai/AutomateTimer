@@ -68,7 +68,8 @@ class WatchMeCog (commands.Cog):
 
                         # !wm get timers curr/current
                         if args[2].lower() == 'curr' or args[2].lower() == 'current':
-                            # list of tabs
+                            # list of timers on current section / tab
+                            print("  wm.get.timers: current tab")
                             proc = subprocess.Popen(['C:\Program Files (x86)\AutoIt3\AutoIt3.exe',scriptdir+'wmget.timer.curr.au3'],stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=subprocess.PIPE)
                             stdout_value = proc.stdout.read() + proc.stderr.read()
                             timers=stdout_value.decode().split("\r\n")
@@ -77,7 +78,8 @@ class WatchMeCog (commands.Cog):
 
                         # !wm get timers all
                         elif args[2].lower() == 'all':
-                            # list of tabs
+                            # list of timers on all sections / tabs
+                            print("  wm.get.timers: all tabs")
                             proc = subprocess.Popen(['C:\Program Files (x86)\AutoIt3\AutoIt3.exe',scriptdir+'wmget.timer.all.au3'],stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=subprocess.PIPE)
                             stdout_value = proc.stdout.read() + proc.stderr.read()
                             timers=stdout_value.decode().split("\r\n")
