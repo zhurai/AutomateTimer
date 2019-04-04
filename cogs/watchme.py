@@ -24,7 +24,7 @@ class WatchMeCog (commands.Cog):
             # !wmget tab ()
             if args[0].lower() == 'tab' or args[0].lower() == 'tabs':
                 if len(args) > 1:
-                    print("  wmget.tab: arguments: " + args[2])
+                    print("  wmget.tabs: arguments: " + args[1])
                     # !wmget tab num
                     if args[1].lower() == 'num' or args[1].lower() == 'id':
                         proc = subprocess.Popen(['C:\Program Files (x86)\AutoIt3\AutoIt3.exe',scriptdir+'wmget.tabs.num.au3'],stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=subprocess.PIPE)
@@ -48,7 +48,7 @@ class WatchMeCog (commands.Cog):
 
                     # !wmget tab ???
                     else:
-                        print("  wmget.tab: invalid argument")
+                        print("  wmget.tabs: invalid argument")
                         await ctx.send("[ERROR] wmget.tabs: invalid argument given")
 
                 # !wmget tab
