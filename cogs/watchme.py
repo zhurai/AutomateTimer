@@ -126,5 +126,10 @@ class WatchMeCog (commands.Cog):
         print ("wmset: [NI] watchme command called with arguments: '", args,"'")
         await ctx.send("[ERROR] wmset: not implemented yet")
 
+    @commands.command()
+    async def wmadd(self, ctx, *args):
+        print ("wmadd: [NI] watchme command called with arguments: '", args,"'")
+        await ctx.send("[ERROR] wmadd: not implemented yet")
+
 def setup(bot):
     bot.add_cog(WatchMeCog(bot))
