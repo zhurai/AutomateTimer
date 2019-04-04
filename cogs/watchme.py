@@ -92,8 +92,9 @@ class WatchMeCog (commands.Cog):
                     print("  wmget.timers: default (current tab only)")
                     proc = subprocess.Popen(['C:\Program Files (x86)\AutoIt3\AutoIt3.exe',scriptdir+'wmget.timer.curr.au3'],stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=subprocess.PIPE)
                     stdout_value = proc.stdout.read() + proc.stderr.read()
-                    tabs=stdout_value.decode().replace("\r\n",", ")
-                    await ctx.send(tabs)
+                    timer1=stdout_value.decode().split("\r\n")
+                    timer2="\n".join(timer1).rstrip()
+                    await ctx.send("```"+timer2+"```")
 
             # !wmget control ()
             elif args[0].lower() == 'control' or args[0].lower() == 'controls':
