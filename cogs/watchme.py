@@ -67,9 +67,9 @@ class WatchMeCog (commands.Cog):
                         print("  wmget.timers: current tab")
                         proc = subprocess.Popen(['C:\Program Files (x86)\AutoIt3\AutoIt3.exe',scriptdir+'wmget.timer.curr.au3'],stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=subprocess.PIPE)
                         stdout_value = proc.stdout.read() + proc.stderr.read()
-                        timers=stdout_value.decode().split("\r\n")
-                        timers2=", ".join(timers).rstrip(', ')
-                        await ctx.send(timers2)
+                        timer1=stdout_value.decode().split("\r\n")
+                        timer2="\n".join(timer1).rstrip()
+                        await ctx.send("```"+timer2+"```")
 
                     # !wm get timers all
                     elif args[1].lower() == 'all':
@@ -77,9 +77,9 @@ class WatchMeCog (commands.Cog):
                         print("  wmget.timers: all tabs")
                         proc = subprocess.Popen(['C:\Program Files (x86)\AutoIt3\AutoIt3.exe',scriptdir+'wmget.timer.all.au3'],stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=subprocess.PIPE)
                         stdout_value = proc.stdout.read() + proc.stderr.read()
-                        timers=stdout_value.decode().split("\r\n")
-                        timers2=", ".join(timers).rstrip(', ')
-                        await ctx.send(timers2)
+                        timer1=stdout_value.decode().split("\r\n")
+                        timer2="\n".join(timer1).rstrip()
+                        await ctx.send("```"+timer2+"```")
 
 
                     # !wm get timers ???
