@@ -20,10 +20,10 @@ class WatchMeCog (commands.Cog):
             await ctx.send("[ERROR] wmget: no argument given")
 
         # !wmget ()
-        if len(args) > 1:
+        if len(args) > 0:
             # !wmget tab ()
             if args[0].lower() == 'tab' or args[0].lower() == 'tabs':
-                if len(args) > 2:
+                if len(args) > 1:
                     print("  wmget.tab: arguments: " + args[2])
                     # !wmget tab num
                     if args[1].lower() == 'num' or args[1].lower() == 'id':
@@ -58,7 +58,7 @@ class WatchMeCog (commands.Cog):
 
             # !wmget timer ()
             elif args[0].lower() == 'timer' or args[0].lower() == 'timers':
-                if len(args) > 2:
+                if len(args) > 1:
                     print("  wm.get.timers: arguments: " + args[1])
 
                     # !wm get timers curr/current
@@ -97,7 +97,7 @@ class WatchMeCog (commands.Cog):
 
             # !wmget control ()
             elif args[0].lower() == 'control' or args[0].lower() == 'controls':
-                if len(args) > 2:
+                if len(args) > 1:
                     print("  wmget.control: arguments: " + args[1])
 
                     # !wmget control list
