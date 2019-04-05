@@ -7,4 +7,4 @@ $hWnd2 = WinGetHandle("C:\Windows\system32\cmd.exe")
 WinMove($hWnd2,"",598,0)
 
 $hWnd3 = WinGetHandle("Command Prompt")
-WinMove($hWnd3,"",598,0)x
+WinMove($hWnd3,"",598,0)
