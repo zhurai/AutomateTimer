@@ -68,8 +68,8 @@ class PADCog (commands.Cog):
 
         dailies="Today's Guerrilla Schedule\n"
         for i,row in enumerate(dailies_time):
-            dailies = dailies+row+" "+dailies_string[i]+"\n"
-        await channel.send("```"+dailies+"```")
+            dailies = dailies+"["+row+"] "+dailies_string[i]+"\n"
+        await channel.send("```css\n"+dailies+"```")
 
         ################################################
 
@@ -113,8 +113,8 @@ class PADCog (commands.Cog):
 
                 dailies="Today's Guerrilla Schedule\n"
                 for i,row in enumerate(dailies_time):
-                    dailies = dailies+row+" "+dailies_string[i]+"\n"
-                await channel.send("```"+dailies+"```")
+                    dailies = dailies+"["+row+"] "+dailies_string[i]+"\n"
+                await channel.send("```css\n"+dailies+"```")
 
                 if time.localtime().tm_isdst == 1:
                     padtime_scrapeskyozora = '08:01'
