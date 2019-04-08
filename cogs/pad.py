@@ -21,12 +21,11 @@ class PADCog (commands.Cog):
     async def skyozora_check(self):
         # scrape at reset
         import time
-        padtime_scrapeskyozora = '08:00'
+        padtime_scrapeskyozora = '08:01'
         if time.localtime().tm_isdst == 1:
-            padtime_scrapeskyozora = '08:00'
+            padtime_scrapeskyozora = '08:01'
         elif time.localtime().tm_isdst == 0:
-            padtime_scrapeskyozora = '07:00'
-        padtime_scrapeskyozora = '08:40'
+            padtime_scrapeskyozora = '07:01'
         dailies_time = []
         dailies_string=[]
 
@@ -51,6 +50,7 @@ class PADCog (commands.Cog):
                         if i == 2:
                             descends=cols2[1].split(" ")
                             message = "\n".join(descends).rstrip()
+                            message = "Today's Descends\n" + message
                             await channel.send("```"+message+"```")
                         elif i == len(rows)-1 or i == len(rows)-2:
                             None
@@ -71,18 +71,18 @@ class PADCog (commands.Cog):
                             name=row.find_all('td')[0].find('a')["title"]
                             dailies_string.append(name)
 
-                dailies=""
+                dailies="Today's Guerrilla Schedule\n"
                 for i,row in enumerate(dailies_time):
-                    dailies = dailies+row+dailies_string[i]+"\n"
+                    dailies = dailies+row+" "+dailies_string[i]+"\n"
                 await channel.send("```"+dailies+"```")
 
                 if time.localtime().tm_isdst == 1:
-                    padtime_scrapeskyozora = '08:00'
+                    padtime_scrapeskyozora = '08:01'
                 elif time.localtime().tm_isdst == 0:
-                    padtime_scrapeskyozora = '07:00'
+                    padtime_scrapeskyozora = '07:01'
 
                 # set timers for it
-                
+
                 await asyncio.sleep(90)
             else:
                 await asyncio.sleep(1)
