@@ -11,7 +11,7 @@ import config
 scriptdir = os.path.dirname(os.path.abspath('bot.py'))+"\\scripts\\"
 padscriptdir = scriptdir+"pad\\"
 channelid=int(config.config['BOT']['autochannel'])
-padtime_scrapeskyozora = '7:05' # 6:30 PT
+padtime_scrapeskyozora = '07:08' # 6:30 PT
 print(padtime_scrapeskyozora)
 
 class PADCog (commands.Cog):
