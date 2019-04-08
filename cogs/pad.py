@@ -1,6 +1,7 @@
 import os
 import sys
-import datetime
+from datetime import datetime
+import asyncio
 import sched
 import discord
 from discord.ext import commands
@@ -10,31 +11,27 @@ import config
 scriptdir = os.path.dirname(os.path.abspath('bot.py'))+"\\scripts\\"
 padscriptdir = scriptdir+"pad\\"
 channelid=int(config.config['BOT']['autochannel'])
-padtime_scrapeskyozora = '6:30' # 6:30 AM PT
+padtime_scrapeskyozora = '6:35' # 6:30 AM PT
+# 6:35 is a test
 
 class PADCog (commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    async def time_check(self):
-        await client.wait_until_ready()
+    async def skyozora_check(self):
+        channel = bot.get_channel(channelid)
+        message = "Test"
 
-        while not client.is_closed:
-            channel = client.get_channel(channelid)
-            messages = ('Test')
-            f = '%H:%M'
-
-            now = datetime.strftime(datetime.now(), f)
-            diff = (datetime.strptime(padtime_scrapeskyozora, f) - datetime.strptime(now, f)).total_seconds()
-
-            s = sched.scheduler(time.perf_counter, time.sleep)
-            args = (client.send_message(channel, message), )
-            s.enter(seconds, 1, client.loop.create_task, args)
-            s.run()
-
+        while self is self.bot.get_cog("PADCog"):
+            now = datetime.strftime(datetime.now(),'%H:%M')
+            if now == padtime_scrapeskyozora:
+                await bot.send_message(channel,message)
+                await asyncio.sleep(90)
+            else
+                await asyncio.sleep(1)
 
 
 def setup(bot):
     b = PADCog(bot)
-    bot.loop.create_task(b.time_check())
+    bot.loop.create_task(b.skyozora_check())
     bot.add_cog(b)
