@@ -5,6 +5,7 @@ import pyautogui
 from discord.ext import commands
 
 scriptdir = os.path.dirname(os.path.abspath('bot.py'))+"\\scripts\\"
+wmscriptdir = scriptdir+"wm\\"
 
 class WatchMeCog (commands.Cog):
     def __init__(self, bot):
@@ -27,20 +28,20 @@ class WatchMeCog (commands.Cog):
                     print("  wmget.tabs: arguments: " + args[1])
                     # !wmget tab num
                     if args[1].lower() == 'num' or args[1].lower() == 'id':
-                        proc = subprocess.Popen(['C:\Program Files (x86)\AutoIt3\AutoIt3.exe',scriptdir+'wmget.tabs.num.au3'],stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=subprocess.PIPE)
+                        proc = subprocess.Popen(['C:\Program Files (x86)\AutoIt3\AutoIt3.exe',wmscriptdir+'wmget.tabs.num.au3'],stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=subprocess.PIPE)
                         stdout_value = proc.stdout.read() + proc.stderr.read()
                         await ctx.send(stdout_value.rstrip().decode())
 
                     # !wmget tab name
                     elif args[1].lower() == 'name':
-                        proc = subprocess.Popen(['C:\Program Files (x86)\AutoIt3\AutoIt3.exe',scriptdir+'wmget.tabs.name.au3'],stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=subprocess.PIPE)
+                        proc = subprocess.Popen(['C:\Program Files (x86)\AutoIt3\AutoIt3.exe',wmscriptdir+'wmget.tabs.name.au3'],stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=subprocess.PIPE)
                         stdout_value = proc.stdout.read() + proc.stderr.read()
                         await ctx.send(stdout_value.rstrip().decode())
 
                     # !wmget tab list
                     elif args[1].lower() == 'list':
                         # list of tabs
-                        proc = subprocess.Popen(['C:\Program Files (x86)\AutoIt3\AutoIt3.exe',scriptdir+'wmget.tabs.list.au3'],stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=subprocess.PIPE)
+                        proc = subprocess.Popen(['C:\Program Files (x86)\AutoIt3\AutoIt3.exe',wmscriptdir+'wmget.tabs.list.au3'],stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=subprocess.PIPE)
                         stdout_value = proc.stdout.read() + proc.stderr.read()
                         tabs1=stdout_value.decode().split("\r\n")
                         tabs2="\n".join(tabs1).rstrip()
@@ -65,7 +66,7 @@ class WatchMeCog (commands.Cog):
                     if args[1].lower() == 'curr' or args[1].lower() == 'current':
                         # list of timers on current section / tab
                         print("  wmget.timers: current tab")
-                        proc = subprocess.Popen(['C:\Program Files (x86)\AutoIt3\AutoIt3.exe',scriptdir+'wmget.timer.curr.au3'],stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=subprocess.PIPE)
+                        proc = subprocess.Popen(['C:\Program Files (x86)\AutoIt3\AutoIt3.exe',wmscriptdir+'wmget.timer.curr.au3'],stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=subprocess.PIPE)
                         stdout_value = proc.stdout.read() + proc.stderr.read()
                         timer1=stdout_value.decode().split("\r\n")
                         timer2="\n".join(timer1).rstrip()
@@ -75,7 +76,7 @@ class WatchMeCog (commands.Cog):
                     elif args[1].lower() == 'all':
                         # list of timers on all sections / tabs
                         print("  wmget.timers: all tabs")
-                        proc = subprocess.Popen(['C:\Program Files (x86)\AutoIt3\AutoIt3.exe',scriptdir+'wmget.timer.all.au3'],stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=subprocess.PIPE)
+                        proc = subprocess.Popen(['C:\Program Files (x86)\AutoIt3\AutoIt3.exe',wmscriptdir+'wmget.timer.all.au3'],stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=subprocess.PIPE)
                         stdout_value = proc.stdout.read() + proc.stderr.read()
                         timer1=stdout_value.decode().split("\r\n")
                         timer2="\n".join(timer1).rstrip()
@@ -90,7 +91,7 @@ class WatchMeCog (commands.Cog):
                 else:
                     # only display CURRENT tab timers by default
                     print("  wmget.timers: default (current tab only)")
-                    proc = subprocess.Popen(['C:\Program Files (x86)\AutoIt3\AutoIt3.exe',scriptdir+'wmget.timer.curr.au3'],stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=subprocess.PIPE)
+                    proc = subprocess.Popen(['C:\Program Files (x86)\AutoIt3\AutoIt3.exe',wmscriptdir+'wmget.timer.curr.au3'],stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=subprocess.PIPE)
                     stdout_value = proc.stdout.read() + proc.stderr.read()
                     timer1=stdout_value.decode().split("\r\n")
                     timer2="\n".join(timer1).rstrip()
@@ -104,7 +105,7 @@ class WatchMeCog (commands.Cog):
                     # !wmget control list
                     # output all CURRENT tab timers
                     if args[1].lower() == 'list' or args[1].lower() == 'current':
-                        proc = subprocess.Popen(['C:\Program Files (x86)\AutoIt3\AutoIt3.exe',scriptdir+'wmget.control.list.au3'],stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=subprocess.PIPE)
+                        proc = subprocess.Popen(['C:\Program Files (x86)\AutoIt3\AutoIt3.exe',wmscriptdir+'wmget.control.list.au3'],stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=subprocess.PIPE)
                         stdout_value = proc.stdout.read() + proc.stderr.read()
                         control1=stdout_value.decode().split("\r\n")
                         control2="\n".join(control1).rstrip()
