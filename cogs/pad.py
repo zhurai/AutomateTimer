@@ -1,12 +1,13 @@
 import os
 import sys
+import datetime
+import sched
 import discord
 from discord.ext import commands
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 import config
-import datetime
-import sched
 
+print(config.config['BOT']['autochannel'])
 scriptdir = os.path.dirname(os.path.abspath('bot.py'))+"\\scripts\\"
 padscriptdir = scriptdir+"pad\\"
 channelid=config.config['BOT'].getint(['autochannel'])
