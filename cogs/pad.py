@@ -10,25 +10,25 @@ import config
 from bs4 import BeautifulSoup
 import requests
 
-
 scriptdir = os.path.dirname(os.path.abspath('bot.py'))+"\\scripts\\"
 padscriptdir = scriptdir+"pad\\"
 channelid=int(config.config['BOT']['autochannel'])
-# scrape at reset
-padtime_scrapeskyozora = '08:00'
-if time.localtime().tm_isdst == 1:
-    padtime_scrapeskyozora = '08:00'
-elif time.localtime().tm_isdst == 0:
-    padtime_scrapeskyozora = '07:00'
-padtime_scrapeskyozora = '08:40'
-dailies_time = []
-dailies_string=[]
 
 class PADCog (commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
     async def skyozora_check(self):
+        # scrape at reset
+        padtime_scrapeskyozora = '08:00'
+        if time.localtime().tm_isdst == 1:
+            padtime_scrapeskyozora = '08:00'
+        elif time.localtime().tm_isdst == 0:
+            padtime_scrapeskyozora = '07:00'
+        padtime_scrapeskyozora = '08:40'
+        dailies_time = []
+        dailies_string=[]
+
         while self is self.bot.get_cog("PADCog"):
             now = datetime.strftime(datetime.now(),'%H:%M')
             if now == padtime_scrapeskyozora:
