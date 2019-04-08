@@ -27,7 +27,7 @@ class PADCog (commands.Cog):
             if now == padtime_scrapeskyozora:
                 await bot.send_message(channel,message)
                 await asyncio.sleep(90)
-            else
+            else:
                 await asyncio.sleep(1)
 
 
