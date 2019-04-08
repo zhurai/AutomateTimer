@@ -2,8 +2,8 @@ import os
 import sys
 from datetime import datetime
 import asyncio
-import time
 import discord
+import time
 from discord.ext import commands
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 import config
@@ -20,6 +20,7 @@ class PADCog (commands.Cog):
 
     async def skyozora_check(self):
         # scrape at reset
+        import time
         padtime_scrapeskyozora = '08:00'
         if time.localtime().tm_isdst == 1:
             padtime_scrapeskyozora = '08:00'
