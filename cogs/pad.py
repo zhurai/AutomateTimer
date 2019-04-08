@@ -64,10 +64,11 @@ class PADCog (commands.Cog):
                         name=row.find_all('td')[0].find('a')["title"]
                         dailies_string.append(name)
 
-            dailies="Today's Guerrilla Schedule\n"
-            for i,row in enumerate(dailies_time):
-                dailies = dailies+row+" "+dailies_string[i]+"\n"
-            await channel.send("```"+dailies+"```")
+        dailies="Today's Guerrilla Schedule\n"
+        for i,row in enumerate(dailies_time):
+            dailies = dailies+row+" "+dailies_string[i]+"\n"
+        await channel.send("```"+dailies+"```")
+        
         ################################################
 
         while self is self.bot.get_cog("PADCog"):
