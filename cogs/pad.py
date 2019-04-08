@@ -20,7 +20,7 @@ if time.localtime().tm_isdst == 1:
     padtime_scrapeskyozora = '08:00'
 elif time.localtime().tm_isdst == 0:
     padtime_scrapeskyozora = '07:00'
- # 6:30 PT
+padtime_scrapeskyozora = '08:40'
 dailies_time = []
 dailies_string=[]
 
