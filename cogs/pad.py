@@ -19,6 +19,8 @@ class PADCog (commands.Cog):
         self.bot = bot
 
     async def skyozora_check(self):
+        await self.bot.wait_until_ready()
+        
         # scrape at reset
         import time
         padtime_scrapeskyozora = '08:01'
@@ -68,7 +70,7 @@ class PADCog (commands.Cog):
         for i,row in enumerate(dailies_time):
             dailies = dailies+row+" "+dailies_string[i]+"\n"
         await channel.send("```"+dailies+"```")
-        
+
         ################################################
 
         while self is self.bot.get_cog("PADCog"):
