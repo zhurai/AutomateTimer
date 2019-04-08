@@ -19,7 +19,7 @@ class PADCog (commands.Cog):
         self.bot = bot
 
     async def skyozora_check(self):
-        channel = bot.get_channel(channelid)
+        channel = self.get_channel(channelid)
         message = "Test"
 
         while self is self.bot.get_cog("PADCog"):
