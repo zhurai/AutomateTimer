@@ -29,6 +29,7 @@ async def on_ready():
 
 bot.load_extension("cogs.management")
 bot.load_extension("cogs.watchme")
+bot.load_extension("cogs.pad")
 
 '''
 # Test commands to set the stage for later
