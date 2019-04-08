@@ -7,10 +7,9 @@ from discord.ext import commands
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 import config
 
-print(config.config['BOT']['autochannel'])
 scriptdir = os.path.dirname(os.path.abspath('bot.py'))+"\\scripts\\"
 padscriptdir = scriptdir+"pad\\"
-channelid=config.config['BOT'].getint(['autochannel'])
+channelid=int(config.config['BOT']['autochannel'])
 padtime_scrapeskyozora = '6:30' # 6:30 AM PT
 
 class PADCog (commands.Cog):
@@ -21,12 +20,12 @@ class PADCog (commands.Cog):
         await client.wait_until_ready()
 
         while not client.is_closed:
-            channel = client.get_channel(channel_id)
+            channel = client.get_channel(channelid)
             messages = ('Test')
             f = '%H:%M'
 
             now = datetime.strftime(datetime.now(), f)
-            diff = (datetime.strptime(alarm_time, f) - datetime.strptime(now, f)).total_seconds()
+            diff = (datetime.strptime(padtime_scrapeskyozora, f) - datetime.strptime(now, f)).total_seconds()
 
             s = sched.scheduler(time.perf_counter, time.sleep)
             args = (client.send_message(channel, message), )
