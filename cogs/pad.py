@@ -16,7 +16,7 @@ class PADCog (commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    async def time_check():
+    async def time_check(self):
         await client.wait_until_ready()
 
         while not client.is_closed:
@@ -35,5 +35,6 @@ class PADCog (commands.Cog):
 
 
 def setup(bot):
-    bot.loop.create_task(time_check())
-    bot.add_cog(PADCog(bot))
+    b = PADCog(bot)
+    bot.loop.create_task(b.time_check())
+    bot.add_cog(b)
