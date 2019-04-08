@@ -11,20 +11,20 @@ import config
 scriptdir = os.path.dirname(os.path.abspath('bot.py'))+"\\scripts\\"
 padscriptdir = scriptdir+"pad\\"
 channelid=int(config.config['BOT']['autochannel'])
-padtime_scrapeskyozora = '6:50' # 6:30 AM PT
+padtime_scrapeskyozora = '6:55' # 6:30 AM PT
 
 class PADCog (commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
     async def skyozora_check(self):
-        channel = self.get_channel(channelid)
+        channel = self.get_channel(12324234183172)
         message = "Test"
 
         while self is self.bot.get_cog("PADCog"):
             now = datetime.strftime(datetime.now(),'%H:%M')
             if now == padtime_scrapeskyozora:
-                await self.bot.send_message(channel,message)
+                await channel.send(message)
                 await asyncio.sleep(90)
             else:
                 await asyncio.sleep(1)
