@@ -56,11 +56,11 @@ class PADCog (commands.Cog):
                         offset=16
                     else:
                         offset=15
-                    time = int(cols2[0][:-1])-offset
-                    if time < 0:
-                        time=time+24
-                        time=str('{0:02d}'.format(time))+":00"
-                        dailies_time.append(time)
+                    daily = int(cols2[0][:-1])-offset
+                    if daily < 0:
+                        daily=daily+24
+                        daily=str('{0:02d}'.format(daily))+":00"
+                        dailies_time.append(daily)
                         name=row.find_all('td')[0].find('a')["title"]
                         dailies_string.append(name)
 
@@ -100,11 +100,11 @@ class PADCog (commands.Cog):
 
                             # get the time in UTC+8
                             # cols[0] because I only care about red one
-                            time = int(cols2[0][:-1])-offset
-                            if time < 0:
-                                time=time+24
-                            time=str('{0:02d}'.format(time))+":00"
-                            dailies_time.append(time)
+                            daily = int(cols2[0][:-1])-offset
+                            if daily < 0:
+                                daily=daily+24
+                            daily=str('{0:02d}'.format(daily))+":00"
+                            dailies_time.append(daily)
                             name=row.find_all('td')[0].find('a')["title"]
                             dailies_string.append(name)
 
