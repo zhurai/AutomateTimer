@@ -20,7 +20,7 @@ class PADCog (commands.Cog):
 
     async def skyozora_check(self):
         await self.bot.wait_until_ready()
-        
+
         # scrape at reset
         import time
         padtime_scrapeskyozora = '08:01'
@@ -47,9 +47,9 @@ class PADCog (commands.Cog):
                 cols2 = [ele.text.strip() for ele in cols]
                 if i == 2:
                     descends=cols2[1].split(" ")
-                    message = "\n".join(descends).rstrip()
-                    message = "Today's Descends\n" + message
-                    await channel.send("```"+message+"```")
+                    message = "\n- ".join(descends).rstrip()
+                    message = "[ Today's Descended ]\n" + message
+                    await channel.send("```css\n"+message+"```")
                 elif i == len(rows)-1 or i == len(rows)-2:
                     None
                 else:
@@ -89,9 +89,9 @@ class PADCog (commands.Cog):
                         cols2 = [ele.text.strip() for ele in cols]
                         if i == 2:
                             descends=cols2[1].split(" ")
-                            message = "\n".join(descends).rstrip()
-                            message = "Today's Descends\n" + message
-                            await channel.send("```"+message+"```")
+                            message = "\n- ".join(descends).rstrip()
+                            message = "[ Today's Descended ]\n" + message
+                            await channel.send("```css\n"+message+"```")
                         elif i == len(rows)-1 or i == len(rows)-2:
                             None
                         else:
