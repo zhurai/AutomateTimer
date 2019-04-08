@@ -82,6 +82,7 @@ class PADCog (commands.Cog):
                     padtime_scrapeskyozora = '07:00'
 
                 # set timers for it
+                
                 await asyncio.sleep(90)
             else:
                 await asyncio.sleep(1)

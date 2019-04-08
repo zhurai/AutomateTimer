@@ -8,3 +8,5 @@ WinMove($hWnd2,"",598,0)
 
 $hWnd3 = WinGetHandle("Command Prompt")
 WinMove($hWnd3,"",598,0)
+
+WinActivate("WatchMe")

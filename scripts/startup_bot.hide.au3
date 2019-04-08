@@ -11,3 +11,5 @@ WinSetState($hWnd2, "", @SW_MINIMIZE)
 $hWnd3 = WinGetHandle("Command Prompt")
 WinMove($hWnd3,"",598,0)
 WinSetState($hWnd3, "", @SW_MINIMIZE)
+
+WinActivate("WatchMe")
