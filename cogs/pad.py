@@ -59,10 +59,10 @@ class PADCog (commands.Cog):
                     daily = int(cols2[0][:-1])-offset
                     if daily < 0:
                         daily=daily+24
-                        daily=str('{0:02d}'.format(daily))+":00"
-                        dailies_time.append(daily)
-                        name=row.find_all('td')[0].find('a')["title"]
-                        dailies_string.append(name)
+                    daily=str('{0:02d}'.format(daily))+":00"
+                    dailies_time.append(daily)
+                    name=row.find_all('td')[0].find('a')["title"]
+                    dailies_string.append(name)
 
         dailies="Today's Guerrilla Schedule\n"
         for i,row in enumerate(dailies_time):
