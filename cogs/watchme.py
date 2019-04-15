@@ -72,17 +72,6 @@ class WatchMeCog (commands.Cog):
                         timer2="\n".join(timer1).rstrip()
                         await ctx.send("```"+timer2+"```")
 
-                    # !wm get timers all
-                    elif args[1].lower() == 'all':
-                        # list of timers on all sections / tabs
-                        print("  wmget.timers: all tabs")
-                        proc = subprocess.Popen(['C:\Program Files (x86)\AutoIt3\AutoIt3.exe',wmscriptdir+'wmget.timer.all.au3'],stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=subprocess.PIPE)
-                        stdout_value = proc.stdout.read() + proc.stderr.read()
-                        timer1=stdout_value.decode().split("\r\n")
-                        timer2="\n".join(timer1).rstrip()
-                        await ctx.send("```"+timer2+"```")
-
-
                     # !wm get timers ???
                     else:
                         print("  wmget.timers: invalid argument")
