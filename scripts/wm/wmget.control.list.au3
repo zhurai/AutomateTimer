@@ -3,7 +3,7 @@
 #include <Array.au3>
 #include <WinAPI.au3>
 
-Func GetAllWindowsControls($hCallersWindow,  $bOnlyVisible=Default, $type=Default,$sStringIncludes=Default)
+Func GetAllWindowsControls($hCallersWindow,  $bOnlyVisible=Default, $type=Default,$sStringIncludes=Default,$getlength=Default)
 	Local $array[0]
 	Local $currcount=0
 	Local $statictype=0
@@ -16,6 +16,7 @@ Func GetAllWindowsControls($hCallersWindow,  $bOnlyVisible=Default, $type=Defaul
     If $bOnlyVisible = Default Then $bOnlyVisible = False
     If $sStringIncludes = Default Then $sStringIncludes = ""
 	If $type = Default Then $type =""
+	If $getlength = Default Then $getlength=False
 
 	$sClassList = WinGetClassList($hCallersWindow)
 
@@ -88,11 +89,16 @@ Func GetAllWindowsControls($hCallersWindow,  $bOnlyVisible=Default, $type=Defaul
 					endif
 
 				elseif $type="EDIT" Then
-					ReDim $array[UBound($array) + 1]
-					;ConsoleWrite("Func=[GetAllWindowsControls]: ControlCounter=[" & StringFormat("%3s", $iTotalCounter) & "] ControlID=[" & StringFormat("%5s", $sControlID) & "] Handle=[" & StringFormat("%10s", $hControl) & "] ClassNN=[" & StringFormat("%19s", $iCurrentClass & $iCurrentCount) & "] XPos=[" & StringFormat("%4s", $aPos[0]) & "] YPos=[" & StringFormat("%4s", $aPos[1]) & "] Width=[" & StringFormat("%4s", $aPos[2]) & "] Height=[" & StringFormat("%4s", $aPos[3]) & "] IsVisible=[" & $bIsVisible & "] Text=[" & $text & "]." & @CRLF)
-					$array[$currcount] = $text
-					$currcount=$currcount+1
-
+					if $getlength=True Then
+						ReDim $array[UBound($array) + 1]
+						$array[$currcount] = StringFormat("%4s", $aPos[1])
+						$currcount=$currcount+1
+					else
+						ReDim $array[UBound($array) + 1]
+						;ConsoleWrite("Func=[GetAllWindowsControls]: ControlCounter=[" & StringFormat("%3s", $iTotalCounter) & "] ControlID=[" & StringFormat("%5s", $sControlID) & "] Handle=[" & StringFormat("%10s", $hControl) & "] ClassNN=[" & StringFormat("%19s", $iCurrentClass & $iCurrentCount) & "] XPos=[" & StringFormat("%4s", $aPos[0]) & "] YPos=[" & StringFormat("%4s", $aPos[1]) & "] Width=[" & StringFormat("%4s", $aPos[2]) & "] Height=[" & StringFormat("%4s", $aPos[3]) & "] IsVisible=[" & $bIsVisible & "] Text=[" & $text & "]." & @CRLF)
+						$array[$currcount] = $text
+						$currcount=$currcount+1
+					endif
 				elseif $statictype=0 Then
 					if StringInStr(StringFormat("%19s", $iCurrentClass & $iCurrentCount),$type) Then
 						ReDim $array[UBound($array) + 1]
@@ -112,8 +118,6 @@ Func GetAllWindowsControls($hCallersWindow,  $bOnlyVisible=Default, $type=Defaul
 
         If Not WinExists($hCallersWindow) Then ExitLoop
         $iTotalCounter += 1
-
-
     Next
 	Return $array
 EndFunc   ;==>GetAllWindowsControls
@@ -121,6 +125,7 @@ EndFunc   ;==>GetAllWindowsControls
 
 $window = WinGetHandle('WatchMe')
 Local $maxlen[5]
+Local $skip[0]
 $maxlen[0] = 0
 $maxlen[1] = 0
 $maxlen[2] = 0
@@ -131,6 +136,7 @@ $array2=GetAllWindowsControls($window,True,"BUTTON","Reset")
 $array3=GetAllWindowsControls($window,True,"BUTTON","Start")
 $array5=GetAllWindowsControls($window,True,"STATIC")
 Local $array4[0]
+$order=GetAllWindowsControls($window,True,"EDIT",Default,True)
 
 For $i = 0 to UBound($array3) -1
 	ReDim $array4[UBound($array4) + 1]
@@ -142,6 +148,38 @@ For $i = 0 to UBound($array3) -1
 	EndIf
 Next
 
+
+; here change the ordering
+
+$highest = 0
+For $j = 0 to Ubound($order) -1
+	for $i=0 to Ubound($order)-2
+		if $order[$i] > $order[$i+1] Then
+			$tempo=$order[$i+1]
+			$order[$i+1] = $order[$i]
+			$order[$i]=$tempo
+
+			$temp1=$array1[$i+1]
+			$temp2=$array2[$i+1]
+			$temp3=$array3[$i+1]
+			$temp4=$array4[$i+1]
+			$temp5=$array5[$i+1]
+
+			$array1[$i+1] = $array1[$i]
+			$array2[$i+1] = $array2[$i]
+			$array3[$i+1] = $array3[$i]
+			$array4[$i+1] = $array4[$i]
+			$array5[$i+1] = $array5[$i]
+
+			$array1[$i]=$temp1
+			$array2[$i]=$temp2
+			$array3[$i]=$temp3
+			$array4[$i]=$temp4
+			$array5[$i]=$temp5
+		endif
+	Next
+Next
+
 _ArrayInsert($array1,0,"Name of Task")
 _ArrayInsert($array2,0,"Reset")
 _ArrayInsert($array3,0,"Start/Stop")
@@ -149,9 +187,12 @@ _ArrayInsert($array4,0,"Status")
 _ArrayInsert($array5,0,"Time Left")
 
 For $i = 0 to UBound($array1) -1
-	if StringLen($array1[$i]) > $maxlen[0] Then
+
+if StringLen($array1[$i]) > $maxlen[0] Then
 		$maxlen[0]=StringLen($array1[$i])
 	Endif
+
+
 Next
 For $i = 0 to UBound($array2) -1
 	if StringLen($array2[$i]) > $maxlen[1] Then
@@ -174,6 +215,7 @@ For $i = 0 to UBound($array5) -1
 	Endif
 Next
 
+
 Global $newarray[UBound($array1)][5]
 For $i = 0 to UBound($array1) - 1
     $newarray[$i][0] = $array1[$i]
@@ -194,4 +236,3 @@ For $i = 0 to UBound($newarray)-1
 	ConsoleWrite($string1 & " | " & $string2 & " | " & $string3 & " | " & $string4 & " | " & $string5 & @CRLF)
 
 Next
-
