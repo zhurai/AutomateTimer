@@ -18,6 +18,43 @@ class PADCog (commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
+    @staticmethod
+    async def _padjp_scrape_skyozora():
+        dailies_time=[]
+        dailies_string=[]
+        descends=[]
+
+        # scrape from skyozora
+        r=requests.get("http://pad.skyozora.com/")
+        soup = BeautifulSoup(r.content, 'html.parser')
+        tables = soup.find("table","sample")
+        rows = tables.find_all('tr')
+
+        for i,row in enumerate(rows):
+            if i > 1:
+                cols = row.find_all('td')
+                a = cols[1].find_all('a')
+
+                if i == 2:
+                    for link in a:
+                        descends.append(link.text.strip())
+                elif i == len(rows)-1 or i == len(rows)-2:
+                    None
+                else:
+                    offset=0
+                    if dst==0:
+                        offset=16
+                    else:
+                        offset=15
+                    daily = int(cols2[0][:-1])-offset
+                    if daily < 0:
+                        daily=daily+24
+                    daily=str('{0:02d}'.format(daily))+":00"
+                    dailies_time.append(daily)
+                    name=row.find_all('td')[0].find('a')["title"]
+                    dailies_string.append(name)
+        return descends,dailies_time,dailies_string
+
     @commands.command()
     async def padjp (self, ctx, *args):
         if len(args) == 1:
@@ -33,46 +70,19 @@ class PADCog (commands.Cog):
                 dst = time.localtime().tm_isdst
                 dailies_time=[]
                 dailies_string=[]
+                descends=[]
 
-                # scrape at startup
-                ################################################
-                r=requests.get("http://pad.skyozora.com/")
-                soup = BeautifulSoup(r.content, 'html.parser')
-                tables = soup.find("table","sample")
-                rows = tables.find_all('tr')
+                descends,dailies_time,dailies_string = await self._padjp_scrape_skyozora()
 
-                for i,row in enumerate(rows):
-                    if i > 1:
-                        cols = row.find_all('td')
-                        a = cols[1].find_all('a')
+                descend_message = "\n- ".join(descends).rstrip()
+                descend_message = "[ Today's Descended ]\n- " + descend_message
+                await channel.send("```css\n"+descend_message+"```")
 
-                        if i == 2:
-                            descends=[]
-                            for link in a:
-                                descends.append(x.text.strip())
-                            message = "\n- ".join(descends).rstrip()
-                            message = "[ Today's Descended ]\n- " + message
-                            await channel.send("```css\n"+message+"```")
-                        elif i == len(rows)-1 or i == len(rows)-2:
-                            None
-                        else:
-                            offset=0
-                            if dst==0:
-                                offset=16
-                            else:
-                                offset=15
-                            daily = int(cols2[0][:-1])-offset
-                            if daily < 0:
-                                daily=daily+24
-                            daily=str('{0:02d}'.format(daily))+":00"
-                            dailies_time.append(daily)
-                            name=row.find_all('td')[0].find('a')["title"]
-                            dailies_string.append(name)
-
-                dailies="Today's Guerrilla Schedule\n"
+                dailies_message = "Today's Guerrilla Schedule\n"
                 for i,row in enumerate(dailies_time):
-                    dailies = dailies+"["+row+"] "+dailies_string[i]+"\n"
-                await channel.send("```css\n"+dailies+"```")
+                    dailies_message = dailies_message+"["+row+"] "+dailies_string[i]+"\n"
+                await channel.send("```css\n"+dailies_message+"```")
+
             # !wm get ???
             else:
                 print("  padjp: invalid argument")
@@ -98,51 +108,25 @@ class PADCog (commands.Cog):
 
         channel = self.bot.get_channel(channelid)
         dst = time.localtime().tm_isdst
+
         dailies_time=[]
         dailies_string=[]
+        descends=[]
 
-        # scrape at startup
-        ################################################
-        r=requests.get("http://pad.skyozora.com/")
-        soup = BeautifulSoup(r.content, 'html.parser')
-        tables = soup.find("table","sample")
-        rows = tables.find_all('tr')
+        # first run
+        descends,dailies_time,dailies_string = await self._padjp_scrape_skyozora()
 
+        descend_message = "\n- ".join(descends).rstrip()
+        descend_message = "[ Today's Descended ]\n- " + descend_message
+        await channel.send("```css\n"+descend_message+"```")
 
-        for i,row in enumerate(rows):
-            if i > 1:
-                cols = row.find_all('td')
-                a = cols[1].find_all('a')
-
-                if i == 2:
-                    descends=[]
-                    for link in a:
-                        descends.append(x.text.strip())
-                    message = "\n- ".join(descends).rstrip()
-                    message = "[ Today's Descended ]\n- " + message
-                    await channel.send("```css\n"+message+"```")
-                elif i == len(rows)-1 or i == len(rows)-2:
-                    None
-                else:
-                    offset=0
-                    if dst==0:
-                        offset=16
-                    else:
-                        offset=15
-                    daily = int(cols2[0][:-1])-offset
-                    if daily < 0:
-                        daily=daily+24
-                    daily=str('{0:02d}'.format(daily))+":00"
-                    dailies_time.append(daily)
-                    name=row.find_all('td')[0].find('a')["title"]
-                    dailies_string.append(name)
-
-        dailies="Today's Guerrilla Schedule\n"
+        dailies_message = "Today's Guerrilla Schedule\n"
         for i,row in enumerate(dailies_time):
-            dailies = dailies+"["+row+"] "+dailies_string[i]+"\n"
-        await channel.send("```css\n"+dailies+"```")
+            dailies_message = dailies_message+"["+row+"] "+dailies_string[i]+"\n"
+        await channel.send("```css\n"+dailies_message+"```")
 
-        ################################################
+
+        # later/daily scheduling
 
         while self is self.bot.get_cog("PADCog"):
             now = datetime.strftime(datetime.now(),'%H:%M')
@@ -150,45 +134,19 @@ class PADCog (commands.Cog):
                 # scrape current events
                 dailies_time=[]
                 dailies_string=[]
-                r=requests.get("http://pad.skyozora.com/")
-                soup = BeautifulSoup(r.content, 'html.parser')
-                tables = soup.find("table","sample")
-                rows = tables.find_all('tr')
+                descends=[]
 
+                # first run
+                descends,dailies_time,dailies_string = await self._padjp_scrape_skyozora()
 
+                descend_message = "\n- ".join(descends).rstrip()
+                descend_message = "[ Today's Descended ]\n- " + descend_message
+                await channel.send("```css\n"+descend_message+"```")
 
-                for i,row in enumerate(rows):
-                    if i > 1:
-                        cols = row.find_all('td')
-                        a = cols[1].find_all('a')
-
-                        if i == 2:
-                            descends=[]
-                            for link in a:
-                                descends.append(x.text.strip())
-                            message = "\n- ".join(descends).rstrip()
-                            message = "[ Today's Descended ]\n- " + message
-                            await channel.send("```css\n"+message+"```")
-                        elif i == len(rows)-1 or i == len(rows)-2:
-                            None
-                        else:
-                            offset=0
-                            if dst==0:
-                                offset=16
-                            else:
-                                offset=15
-                            daily = int(cols2[0][:-1])-offset
-                            if daily < 0:
-                                daily=daily+24
-                            daily=str('{0:02d}'.format(daily))+":00"
-                            dailies_time.append(daily)
-                            name=row.find_all('td')[0].find('a')["title"]
-                            dailies_string.append(name)
-
-                dailies="Today's Guerrilla Schedule\n"
+                dailies_message = "Today's Guerrilla Schedule\n"
                 for i,row in enumerate(dailies_time):
-                    dailies = dailies+"["+row+"] "+dailies_string[i]+"\n"
-                await channel.send("```css\n"+dailies+"```")
+                    dailies_message = dailies_message+"["+row+"] "+dailies_string[i]+"\n"
+                await channel.send("```css\n"+dailies_message+"```")
 
                 if time.localtime().tm_isdst == 1:
                     padtime_scrapeskyozora = '08:01'
