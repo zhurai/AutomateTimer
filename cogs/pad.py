@@ -46,7 +46,7 @@ class PADCog (commands.Cog):
                 if i == 2:
                     descends=cols2[1].split(" ")
                     message = "\n- ".join(descends).rstrip()
-                    message = "[ Today's Descended ]\n" + message
+                    message = "[ Today's Descended ]\n- " + message
                     await channel.send("```css\n"+message+"```")
                 elif i == len(rows)-1 or i == len(rows)-2:
                     None
@@ -100,7 +100,7 @@ class PADCog (commands.Cog):
                 if i == 2:
                     descends=cols2[1].split(" ")
                     message = "\n- ".join(descends).rstrip()
-                    message = "[ Today's Descended ]\n" + message
+                    message = "[ Today's Descended ]\n- " + message
                     await channel.send("```css\n"+message+"```")
                 elif i == len(rows)-1 or i == len(rows)-2:
                     None
@@ -142,7 +142,7 @@ class PADCog (commands.Cog):
                         if i == 2:
                             descends=cols2[1].split(" ")
                             message = "\n- ".join(descends).rstrip()
-                            message = "[ Today's Descended ]\n" + message
+                            message = "[ Today's Descended ]\n- " + message
                             await channel.send("```css\n"+message+"```")
                         elif i == len(rows)-1 or i == len(rows)-2:
                             None
