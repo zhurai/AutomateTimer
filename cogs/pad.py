@@ -33,9 +33,11 @@ class PADCog (commands.Cog):
         for i,row in enumerate(rows):
             if i > 1:
                 cols = row.find_all('td')
-                a = cols[1].find_all('a')
+                cols2 = [ele.text.strip() for ele in cols]
 
                 if i == 2:
+                    a = cols[1].find_all('a')
+                    
                     for link in a:
                         descends.append(link.text.strip())
                 elif i == len(rows)-1 or i == len(rows)-2:
