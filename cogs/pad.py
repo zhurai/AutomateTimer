@@ -129,7 +129,8 @@ class PADCog (commands.Cog):
             now = datetime.strftime(datetime.now(),'%H:%M')
             if now == padtime_scrapeskyozora:
                 # scrape current events
-
+                dailies_time=[]
+                dailies_string=[]
                 r=requests.get("http://pad.skyozora.com/")
                 soup = BeautifulSoup(r.content, 'html.parser')
                 tables = soup.find("table","sample")
