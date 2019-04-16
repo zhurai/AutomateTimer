@@ -19,7 +19,7 @@ class PADCog (commands.Cog):
         self.bot = bot
 
     @staticmethod
-    async def _padjp_scrape_skyozora():
+    async def _padjp_scrape_skyozora(dst):
         dailies_time=[]
         dailies_string=[]
         descends=[]
@@ -72,7 +72,7 @@ class PADCog (commands.Cog):
                 dailies_string=[]
                 descends=[]
 
-                descends,dailies_time,dailies_string = await self._padjp_scrape_skyozora()
+                descends,dailies_time,dailies_string = await self._padjp_scrape_skyozora(dst)
 
                 descend_message = "\n- ".join(descends).rstrip()
                 descend_message = "[ Today's Descended ]\n- " + descend_message
@@ -114,7 +114,7 @@ class PADCog (commands.Cog):
         descends=[]
 
         # first run
-        descends,dailies_time,dailies_string = await self._padjp_scrape_skyozora()
+        descends,dailies_time,dailies_string = await self._padjp_scrape_skyozora(dst)
 
         descend_message = "\n- ".join(descends).rstrip()
         descend_message = "[ Today's Descended ]\n- " + descend_message
@@ -137,7 +137,7 @@ class PADCog (commands.Cog):
                 descends=[]
 
                 # first run
-                descends,dailies_time,dailies_string = await self._padjp_scrape_skyozora()
+                descends,dailies_time,dailies_string = await self._padjp_scrape_skyozora(dst)
 
                 descend_message = "\n- ".join(descends).rstrip()
                 descend_message = "[ Today's Descended ]\n- " + descend_message
